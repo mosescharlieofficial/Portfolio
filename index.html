@@ -288,6 +288,12 @@
             object-fit: cover;
             border: 5px solid var(--secondary);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: #eee; /* Fallback color if image doesn't load */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 150px;
         }
         
         /* Skills Section */
@@ -455,6 +461,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         
         .achievement-card:hover {
@@ -497,6 +504,15 @@
             align-items: center;
             justify-content: center;
             margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-details h4 {
+            margin-bottom: 5px;
         }
         
         .form-group {
@@ -527,6 +543,11 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 30px;
+        }
+        
+        .footer-about h3 {
+            color: white; /* Make the name visible in footer */
+            margin-bottom: 10px;
         }
         
         .footer-links {
@@ -639,6 +660,11 @@
             .name-text {
                 font-size: 2.5rem;
             }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
         }
     </style>
 </head>
@@ -702,7 +728,7 @@
                 </div>
                 <div class="about-image">
                     <div class="profile-img">
-                        <i class="fas fa-user" style="font-size: 150px; color: #ccc; line-height: 300px;"></i>
+                        <img src="pass.jpg" alt="Moses Charlie Yalla" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -787,7 +813,7 @@
                             <span class="tag">JavaScript</span>
                             <span class="tag">Firebase</span>
                         </div>
-                        <a href="#" class="btn">View Project</a>
+                        <a href="AI-Based Career Counseling.html" class="btn">View Project</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -915,14 +941,14 @@
                     <h3>Winner</h3>
                     <p>Ankuran Tech Showcase 2022</p>
                 </div>
-                <div class="achievement-card">
+                <div class="achievement-card" onclick="window.location.href='Design Thinking Certificate.html'">
                     <div class="achievement-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3>SAP Certified Associate</h3>
                     <p>Design Thinking – MoE's Innovation Cell</p>
                 </div>
-                <div class="achievement-card">
+                <div class="achievement-card" onclick="window.location.href='IDE Bootcamp.html'">
                     <div class="achievement-icon">
                         <i class="fas fa-code"></i>
                     </div>
@@ -945,7 +971,7 @@
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div>
+                        <div class="contact-details">
                             <h4>Location</h4>
                             <p>Maharashtra, India</p>
                         </div>
@@ -954,7 +980,7 @@
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
                         </div>
-                        <div>
+                        <div class="contact-details">
                             <h4>Phone</h4>
                             <p>+91 6301059924</p>
                         </div>

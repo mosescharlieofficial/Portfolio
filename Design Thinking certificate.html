@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Thinking Certificate | Moses Charlie Yalla</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Certificate Hero Section */
+        .certificate-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .certificate-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .certificate-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Certificate Display */
+        .certificate-display {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .certificate-img {
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+        
+        .certificate-actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        /* Certificate Details */
+        .certificate-details {
+            background-color: var(--light);
+            padding: 60px 0;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .detail-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .detail-card h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .detail-card h3 i {
+            margin-right: 10px;
+        }
+        
+        .detail-list {
+            list-style: none;
+        }
+        
+        .detail-list li {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 150px;
+        }
+        
+        .detail-value {
+            color: var(--dark);
+            text-align: right;
+            flex: 1;
+        }
+        
+        /* About Certificate */
+        .about-certificate {
+            padding: 80px 0;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-content h2 {
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid var(--secondary);
+        }
+        
+        /* Program Partners */
+        .program-partners {
+            background-color: var(--light);
+            padding: 60px 0;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .partner-logo {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .partner-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-about h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Back to Portfolio */
+        .back-portfolio {
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        /* Share Modal Styles */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .share-modal.active {
+            display: flex;
+        }
+        
+        .share-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .share-options {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .linkedin-share {
+            background: #0077b5;
+        }
+        
+        .twitter-share {
+            background: #1da1f2;
+        }
+        
+        .whatsapp-share {
+            background: #25d366;
+        }
+        
+        .email-share {
+            background: #ea4335;
+        }
+        
+        .copy-link-container {
+            margin: 15px 0;
+        }
+        
+        .copy-link-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .certificate-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .certificate-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .detail-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .detail-label, .detail-value {
+                min-width: auto;
+                text-align: left;
+            }
+            
+            .detail-value {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Moses<span>Charlie</span></div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#achievements">Achievements</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Certificate Hero Section -->
+    <section class="certificate-hero">
+        <div class="container">
+            <h1>Design Thinking & Innovation Certificate</h1>
+            <p>School Innovation Ambassador Training Program - Ministry of Education's Innovation Cell</p>
+            <div class="certificate-actions">
+                <a href="#certificate-details" class="btn">View Details</a>
+                <a href="index.html#achievements" class="btn btn-outline">Back to Achievements</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Portfolio -->
+    <div class="back-portfolio">
+        <div class="container">
+            <a href="index.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+        </div>
+    </div>
+
+    <!-- Certificate Display -->
+    <section class="certificate-display">
+        <div class="container">
+            <h2 class="section-title">Certificate of Completion</h2>
+            <div class="certificate-container">
+                <img src="Design thinking and innovation.png" alt="Design Thinking Certificate" class="certificate-img">
+            </div>
+            <div class="certificate-actions">
+                <a href="Design thinking and innovation.png" download="Moses_Charlie_Design_Thinking_Certificate.png" class="btn">
+                    <i class="fas fa-download"></i> Download Certificate
+                </a>
+                <button class="btn btn-outline share-achievement-btn">
+                    <i class="fas fa-share-alt"></i> Share Achievement
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Details -->
+    <section id="certificate-details" class="certificate-details">
+        <div class="container">
+            <h2 class="section-title">Certificate Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3><i class="fas fa-user-graduate"></i> Recipient Information</h3>
+                    <ul class="detail-list">
+                        <li>
+                            <span class="detail-label">Name:</span>
+                            <span class="detail-value">MOSES CHARLIE</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Certificate ID:</span>
+                            <span class="detail-value">SIA2024191213/1</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Issuance Date:</span>
+                            <span class="detail-value">24 October 2024</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3><i class="fas fa-certificate"></i> Program Information</h3>
+                    <ul class="detail-list">
+                        <li>
+                            <span class="detail-label">Training Program:</span>
+                            <span class="detail-value">Design Thinking & Innovation</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Overall Program:</span>
+                            <span class="detail-value">School Innovation Ambassador Training Program</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Duration:</span>
+                            <span class="detail-value">26 Hours</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3><i class="fas fa-building"></i> Issuing Authority</h3>
+                    <ul class="detail-list">
+                        <li>
+                            <span class="detail-label">Primary Issuer:</span>
+                            <span class="detail-value">Ministry of Education's Innovation Cell</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Partners:</span>
+                            <span class="detail-value">AICTE & CBSE</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Signatories:</span>
+                            <span class="detail-value">Dr. Abhay Jere & Dr. Biswajit Saha</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Certificate -->
+    <section class="about-certificate">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About This Certification</h2>
+                <p>The School Innovation Ambassador Training Program (SIATP) is a flagship initiative by the Ministry of Education's Innovation Cell (MIC) in collaboration with AICTE and CBSE. This program aims to nurture a culture of innovation and entrepreneurship among students and teachers across India.</p>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-lightbulb"></i> Design Thinking & Innovation Training</h3>
+                    <p>The 26-hour intensive training program focused on Design Thinking methodology, which is a human-centered approach to innovation that integrates the needs of people, the possibilities of technology, and the requirements for business success.</p>
+                </div>
+                
+                <p>As part of the "Azadi Ka Amrit Mahotsav" celebrations, this program represents the government's commitment to fostering innovation and preparing the next generation of problem-solvers and innovators in India.</p>
+                
+                <p>By completing this program, I have gained valuable skills in:</p>
+                <ul>
+                    <li>Understanding user needs and empathy mapping</li>
+                    <li>Problem definition and ideation techniques</li>
+                    <li>Prototyping and testing innovative solutions</li>
+                    <li>Implementing design thinking in educational contexts</li>
+                    <li>Fostering innovation culture in academic institutions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Partners -->
+    <section class="program-partners">
+        <div class="container">
+            <h2 class="section-title">Program Partners</h2>
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>MoE's Innovation Cell</h4>
+                    <p>Ministry of Education</p>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h4>AICTE</h4>
+                    <p>All India Council for Technical Education</p>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h4>CBSE</h4>
+                    <p>Central Board of Secondary Education</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Explore More Achievements</h2>
+            <p>Check out my other certifications, awards, and accomplishments in my portfolio.</p>
+            <div class="certificate-actions">
+                <a href="index.html#achievements" class="btn">View All Achievements</a>
+                <a href="index.html#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Moses Charlie Yalla</h3>
+                    <p>Creative professional with expertise in problem-solving, product design, project management, and IoT (AI/ML).</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Moses Charlie Yalla. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <h3>Share Achievement</h3>
+            <p>Share my Design Thinking & Innovation certificate on:</p>
+            <div class="share-options">
+                <a href="#" class="share-btn linkedin-share" id="linkedinShare">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="#" class="share-btn twitter-share" id="twitterShare">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="#" class="share-btn whatsapp-share" id="whatsappShare">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="#" class="share-btn email-share" id="emailShare">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+            <div class="copy-link-container">
+                <p><strong>Or copy link:</strong></p>
+                <input type="text" id="shareUrl" class="copy-link-input" value="https://yourportfolio.com/Design%20Thinking.html" readonly>
+                <button class="btn" id="copyLinkBtn" style="margin-top: 10px;">
+                    <i class="fas fa-copy"></i> Copy Link
+                </button>
+            </div>
+            <button class="btn btn-outline" id="closeShareModal" style="margin-top: 15px;">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Share Achievement Functionality
+        const shareAchievementBtn = document.querySelector('.share-achievement-btn');
+        const shareModal = document.getElementById('shareModal');
+        const closeShareModal = document.getElementById('closeShareModal');
+        const copyLinkBtn = document.getElementById('copyLinkBtn');
+        const shareUrlInput = document.getElementById('shareUrl');
+
+        // Social share URLs
+        const pageUrl = encodeURIComponent(window.location.href);
+        const shareText = encodeURIComponent("I'm proud to share that I've completed the Design Thinking & Innovation certification from MoE's Innovation Cell! Check out my achievement.");
+
+        // Set up social sharing links
+        document.getElementById('linkedinShare').href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
+        document.getElementById('twitterShare').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${pageUrl}`;
+        document.getElementById('whatsappShare').href = `https://wa.me/?text=${shareText}%20${pageUrl}`;
+        document.getElementById('emailShare').href = `mailto:?subject=My Design Thinking Achievement&body=${shareText}%0A%0AView it here: ${pageUrl}`;
+
+        // Open share modal
+        shareAchievementBtn.addEventListener('click', function() {
+            shareModal.classList.add('active');
+        });
+
+        // Close share modal
+        closeShareModal.addEventListener('click', function() {
+            shareModal.classList.remove('active');
+        });
+
+        // Copy link functionality
+        copyLinkBtn.addEventListener('click', function() {
+            shareUrlInput.select();
+            document.execCommand('copy');
+            
+            // Change button text temporarily
+            const originalText = copyLinkBtn.innerHTML;
+            copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            
+            setTimeout(() => {
+                copyLinkBtn.innerHTML = originalText;
+            }, 2000);
+        });
+
+        // Close modal when clicking outside
+        shareModal.addEventListener('click', function(e) {
+            if (e.target === shareModal) {
+                shareModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
