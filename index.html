@@ -405,6 +405,14 @@
             position: relative;
             width: 50%;
             box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .timeline-item:nth-child(odd) {
@@ -417,10 +425,17 @@
         
         .timeline-content {
             background-color: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             position: relative;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         .timeline-content:after {
@@ -445,6 +460,26 @@
             font-weight: 600;
             color: var(--secondary);
             margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .timeline-date i {
+            font-size: 1.1rem;
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+        
+        .timeline-content h4 {
+            color: var(--gray);
+            margin-bottom: 12px;
+            font-weight: 500;
+            font-size: 1.1rem;
         }
         
         /* Achievements Section */
@@ -532,6 +567,31 @@
             resize: vertical;
         }
         
+        /* Social Links - Fixed Visibility */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
         /* Footer */
         footer {
             background-color: var(--primary);
@@ -565,13 +625,13 @@
             color: var(--secondary);
         }
         
-        .social-links {
+        .footer-social-links {
             display: flex;
             gap: 15px;
             margin-top: 20px;
         }
         
-        .social-links a {
+        .footer-social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -583,7 +643,7 @@
             transition: all 0.3s ease;
         }
         
-        .social-links a:hover {
+        .footer-social-links a:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
         }
@@ -874,7 +934,7 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">Current</div>
+                        <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Current</div>
                         <h3>R&D Intern</h3>
                         <h4>SAMER (Autonomous R&D Lab under MeitY, Govt. of India)</h4>
                         <p>Working in the Photonics & Quantum Technology Division, focusing on experimental data handling – filtering, merging, automation (Python, Pandas, NumPy), Excel/CSV integration, and visualization (Google Colab/Jupyter) to support R&D workflows.</p>
@@ -882,7 +942,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">2023</div>
+                        <div class="timeline-date"><i class="fas fa-calendar-alt"></i> 2023</div>
                         <h3>Product Design</h3>
                         <h4>Sciens Technologies, Hyderabad</h4>
                         <p>Assisted in the creation of wireframes, mockups, and prototypes for web and mobile products. Collaborated with design and product teams to iterate on UI/UX concepts.</p>
@@ -890,7 +950,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">2023</div>
+                        <div class="timeline-date"><i class="fas fa-calendar-alt"></i> 2023</div>
                         <h3>Trainee</h3>
                         <h4>AICTE ATAL Faculty Development Program, New Delhi</h4>
                         <p>Successfully completed AICTE ATAL Faculty Development Program on "Treat Water & Save Environment". Gained insights into advanced water treatment technologies and sustainable environmental practices.</p>
@@ -898,7 +958,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">2022</div>
+                        <div class="timeline-date"><i class="fas fa-calendar-alt"></i> 2022</div>
                         <h3>Sales And Marketing Specialist</h3>
                         <h4>Flipkart, Andhra Pradesh</h4>
                         <p>Managed seller account, handled ID and signature verification. Ensured accurate product listings and stock availability for optimized sales performance.</p>
@@ -1021,6 +1081,12 @@
                 <div class="footer-about">
                     <h3>Moses Charlie Yalla</h3>
                     <p>Creative professional with expertise in problem-solving, product design, project management, and IoT (AI/ML).</p>
+                    <div class="footer-social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <a href="#home">Home</a>
@@ -1074,6 +1140,24 @@
             e.preventDefault();
             alert('Thank you for your message! I will get back to you soon.');
             this.reset();
+        });
+
+        // Timeline animation on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        timelineItems.forEach(item => {
+            observer.observe(item);
         });
     </script>
 </body>
