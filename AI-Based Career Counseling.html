@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Career Counseling | Moses Charlie Yalla</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .project-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .meta-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Project Overview */
+        .overview-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .overview-text {
+            flex: 1;
+        }
+        
+        .overview-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .project-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Problem & Solution */
+        .problem-solution {
+            background-color: var(--light);
+        }
+        
+        .ps-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .problem-box, .solution-box {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .problem-box h3, .solution-box h3 {
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+        }
+        
+        .problem-box h3 i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .solution-box h3 i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Tech Stack */
+        .tech-stack {
+            background-color: var(--light);
+        }
+        
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .tech-category {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tech-category h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tech-category h3 i {
+            margin-right: 10px;
+        }
+        
+        .tech-list {
+            list-style: none;
+        }
+        
+        .tech-list li {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tech-list li i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        /* Demo & Media */
+        .demo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 450px;
+            background-color: #eee;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+        
+        .video-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .media-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .media-img {
+            height: 150px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+        
+        .media-content {
+            padding: 20px;
+        }
+        
+        .media-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Documentation */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .doc-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .doc-header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .doc-content {
+            padding: 20px;
+        }
+        
+        .doc-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .doc-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .doc-list li:before {
+            content: '•';
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Team & Recognition */
+        .team-recognition {
+            background-color: var(--light);
+        }
+        
+        .tr-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .team-section, .recognition-section {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--gray);
+        }
+        
+        .achievement-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .achievement-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Future Scope */
+        .future-scope-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .scope-list {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+        
+        .scope-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .scope-list li:before {
+            content: '→';
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Back to Portfolio */
+        .back-portfolio {
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .overview-content, .ps-container, .tr-container {
+                flex-direction: column;
+            }
+            
+            .project-meta {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .project-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Moses<span>Charlie</span></div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Hero Section -->
+    <section class="project-hero">
+        <div class="container">
+            <h1>AI-Based Career Counseling</h1>
+            <p>An intelligent platform that provides personalized career guidance using AI algorithms to help students make informed career decisions with detailed roadmaps.</p>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-value">2023</div>
+                    <div class="meta-label">Year</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-value">6 Months</div>
+                    <div class="meta-label">Duration</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-value">Team of 4</div>
+                    <div class="meta-label">Team Size</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-value">Web App</div>
+                    <div class="meta-label">Platform</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Portfolio -->
+    <div class="back-portfolio">
+        <div class="container">
+            <a href="index.html#projects" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+        </div>
+    </div>
+
+    <!-- Project Overview -->
+    <section class="overview">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p>The AI-Based Career Counseling platform is designed to address the critical challenge students face when making career decisions. By leveraging artificial intelligence and machine learning algorithms, the system analyzes a student's academic performance, interests, skills, and personality traits to provide personalized career recommendations.</p>
+                    <p>Our solution goes beyond simple career matching by providing detailed roadmaps for each recommended career path, including required education, skill development timelines, and potential job opportunities. The platform also incorporates real-time market trends to ensure recommendations align with current and future job market demands.</p>
+                    <p>The project was developed as part of the Smart India Hackathon 2023, where it was selected as a finalist, recognizing its potential to transform career guidance for students across India.</p>
+                    <div class="tech-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="overview-image">
+                    <div class="project-img">
+                        <div style="width:100%; height:300px; background-color:#eee; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#95a5a6;">
+                            <i class="fas fa-robot" style="font-size: 80px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section class="problem-solution">
+        <div class="container">
+            <h2 class="section-title">Problem & Solution</h2>
+            <div class="ps-container">
+                <div class="problem-box">
+                    <h3><i class="fas fa-exclamation-circle"></i> The Problem</h3>
+                    <p>Students today face immense pressure when choosing career paths, often relying on limited information, parental influence, or peer pressure rather than data-driven insights.</p>
+                    <ul>
+                        <li>Lack of personalized career guidance</li>
+                        <li>Limited awareness of emerging career options</li>
+                        <li>Insufficient understanding of skill requirements</li>
+                        <li>Difficulty in accessing current job market trends</li>
+                        <li>High cost of professional career counseling</li>
+                    </ul>
+                </div>
+                <div class="solution-box">
+                    <h3><i class="fas fa-lightbulb"></i> Our Solution</h3>
+                    <p>An AI-powered platform that provides accessible, affordable, and personalized career guidance to students, helping them make informed decisions about their future.</p>
+                    <ul>
+                        <li>Personalized career recommendations based on multiple data points</li>
+                        <li>Detailed roadmaps for each career path</li>
+                        <li>Real-time analysis of job market trends</li>
+                        <li>Skill gap analysis and development plans</li>
+                        <li>Accessible through web and mobile platforms</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Personalized Assessment</h3>
+                    <p>Comprehensive evaluation of skills, interests, and personality traits using advanced psychometric analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Career Roadmaps</h3>
+                    <p>Step-by-step guidance for each recommended career path with milestones and skill development timelines.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Market Analysis</h3>
+                    <p>Real-time tracking of job market trends, salary insights, and future demand predictions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Educational Pathways</h3>
+                    <p>Recommendations for courses, certifications, and degrees aligned with career goals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Skill Development</h3>
+                    <p>Personalized learning plans to bridge skill gaps and enhance employability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>AI Chat Support</h3>
+                    <p>24/7 chatbot assistance for career-related queries and guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="tech-categories">
+                <div class="tech-category">
+                    <h3><i class="fas fa-desktop"></i> Frontend</h3>
+                    <ul class="tech-list">
+                        <li><i class="fas fa-check"></i> HTML5</li>
+                        <li><i class="fas fa-check"></i> CSS3 with Flexbox/Grid</li>
+                        <li><i class="fas fa-check"></i> JavaScript (ES6+)</li>
+                        <li><i class="fas fa-check"></i> React.js</li>
+                        <li><i class="fas fa-check"></i> Chart.js for Data Visualization</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <ul class="tech-list">
+                        <li><i class="fas fa-check"></i> Node.js with Express</li>
+                        <li><i class="fas fa-check"></i> Firebase Authentication</li>
+                        <li><i class="fas fa-check"></i> Firebase Firestore</li>
+                        <li><i class="fas fa-check"></i> Firebase Cloud Functions</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3><i class="fas fa-brain"></i> AI/ML Components</h3>
+                    <ul class="tech-list">
+                        <li><i class="fas fa-check"></i> Python with Scikit-learn</li>
+                        <li><i class="fas fa-check"></i> Natural Language Processing (NLP)</li>
+                        <li><i class="fas fa-check"></i> Recommendation Algorithms</li>
+                        <li><i class="fas fa-check"></i> Sentiment Analysis</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3><i class="fas fa-tools"></i> Development Tools</h3>
+                    <ul class="tech-list">
+                        <li><i class="fas fa-check"></i> Git & GitHub</li>
+                        <li><i class="fas fa-check"></i> VS Code</li>
+                        <li><i class="fas fa-check"></i> Postman API Testing</li>
+                        <li><i class="fas fa-check"></i> Figma for UI/UX Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo & Media -->
+    <section class="demo-media">
+        <div class="container">
+            <h2 class="section-title">Project Demo & Media</h2>
+            <div class="demo-container">
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <p>Project Demo Video</p>
+                        <p>(YouTube video would be embedded here)</p>
+                    </div>
+                </div>
+                
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-img">
+                            <i class="fas fa-images" style="font-size: 40px;"></i>
+                        </div>
+                        <div class="media-content">
+                            <h3>UI Screenshots</h3>
+                            <p>Collection of application screens showcasing the user interface and experience.</p>
+                            <a href="#" class="btn" style="margin-top: 10px;">View Gallery</a>
+                        </div>
+                    </div>
+                    <div class="media-card">
+                        <div class="media-img">
+                            <i class="fas fa-file-powerpoint" style="font-size: 40px;"></i>
+                        </div>
+                        <div class="media-content">
+                            <h3>Project Presentation</h3>
+                            <p>Detailed PowerPoint presentation explaining the project concept and implementation.</p>
+                            <a href="#" class="btn" style="margin-top: 10px;">Download PPT</a>
+                        </div>
+                    </div>
+                    <div class="media-card">
+                        <div class="media-img">
+                            <i class="fas fa-file-alt" style="font-size: 40px;"></i>
+                        </div>
+                        <div class="media-content">
+                            <h3>Research Paper</h3>
+                            <p>Academic paper detailing the methodology and findings of our research.</p>
+                            <a href="#" class="btn" style="margin-top: 10px;">View Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation -->
+    <section class="documentation">
+        <div class="container">
+            <h2 class="section-title">Project Documentation</h2>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <div class="doc-header">
+                        <h3>Technical Documentation</h3>
+                    </div>
+                    <div class="doc-content">
+                        <p>Comprehensive technical documentation covering system architecture, API specifications, and implementation details.</p>
+                        <ul class="doc-list">
+                            <li>System Architecture Diagram</li>
+                            <li>Database Schema</li>
+                            <li>API Endpoints Documentation</li>
+                            <li>Deployment Guide</li>
+                        </ul>
+                        <a href="#" class="btn">Download PDF</a>
+                    </div>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-header">
+                        <h3>User Manual</h3>
+                    </div>
+                    <div class="doc-content">
+                        <p>Step-by-step guide for users to navigate the platform and make the most of its features.</p>
+                        <ul class="doc-list">
+                            <li>Registration & Profile Setup</li>
+                            <li>Taking the Career Assessment</li>
+                            <li>Interpreting Results</li>
+                            <li>Using the Career Roadmap</li>
+                        </ul>
+                        <a href="#" class="btn">Download PDF</a>
+                    </div>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-header">
+                        <h3>Research Proposal</h3>
+                    </div>
+                    <div class="doc-content">
+                        <p>Original research proposal outlining the problem statement, objectives, and methodology.</p>
+                        <ul class="doc-list">
+                            <li>Problem Statement & Objectives</li>
+                            <li>Literature Review</li>
+                            <li>Research Methodology</li>
+                            <li>Expected Outcomes</li>
+                        </ul>
+                        <a href="#" class="btn">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team & Recognition -->
+    <section class="team-recognition">
+        <div class="container">
+            <h2 class="section-title">Team & Recognition</h2>
+            <div class="tr-container">
+                <div class="team-section">
+                    <h3>Project Team</h3>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4>Moses Charlie Yalla</h4>
+                            <p>Project Lead & Full Stack Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4>Prajakta Tiwari</h4>
+                            <p>UI/UX Designer</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4>Nilay Singh</h4>
+                            <p>Backend Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4>Worpam Zimik</h4>
+                            <p>AI/ML Specialist</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recognition-section">
+                    <h3>Awards & Recognition</h3>
+                    <div class="achievement-item">
+                        <h4>Finalist</h4>
+                        <p>Smart India Hackathon 2023</p>
+                        <p>Selected among top projects in the national-level hackathon</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>Research Grant</h4>
+                        <p>University Innovation Fund 2023</p>
+                        <p>Received funding for further development and implementation</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>Featured Publication</h4>
+                        <p>International Journal of Educational Technology</p>
+                        <p>Paper accepted for publication in Q2 ranked journal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Scope -->
+    <section class="future-scope">
+        <div class="container">
+            <h2 class="section-title">Future Scope & Development</h2>
+            <div class="future-scope-content">
+                <p>The AI-Based Career Counseling platform has significant potential for expansion and enhancement. Our roadmap includes several exciting developments to further improve the platform's capabilities and reach.</p>
+                <ul class="scope-list">
+                    <li><strong>Mobile Application:</strong> Development of dedicated iOS and Android apps for better accessibility</li>
+                    <li><strong>Advanced AI Models:</strong> Integration of more sophisticated machine learning algorithms for improved recommendations</li>
+                    <li><strong>Industry Partnerships:</strong> Collaboration with companies for internship and job placement opportunities</li>
+                    <li><strong>Global Expansion:</strong> Adaptation for international education systems and job markets</li>
+                    <li><strong>VR Career Simulations:</strong> Implementation of virtual reality experiences for career exploration</li>
+                    <li><strong>Lifelong Learning Platform:</strong> Extension to support career transitions and upskilling throughout professional life</li>
+                </ul>
+                <p>We believe that with continued development, this platform can become a comprehensive career guidance ecosystem serving millions of students worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Interested in This Project?</h2>
+            <p>If you're interested in collaborating, investing, or learning more about the AI-Based Career Counseling platform, I'd love to connect with you.</p>
+            <div class="cta-btns">
+                <a href="index.html#contact" class="btn">Get In Touch</a>
+                <a href="index.html#projects" class="btn btn-outline">View Other Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Moses Charlie Yalla</h3>
+                    <p>Creative professional with expertise in problem-solving, product design, project management, and IoT (AI/ML).</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Moses Charlie Yalla. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
