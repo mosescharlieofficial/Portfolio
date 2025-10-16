@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart India Hackathon 2023 | Moses Charlie Yalla</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --success: #2ecc71;
+            --indigo: #3f51b5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-indigo {
+            background-color: var(--indigo);
+        }
+        
+        .btn-indigo:hover {
+            background-color: #303f9f;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* SIH Hero Section */
+        .sih-hero {
+            background: linear-gradient(135deg, var(--indigo) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .sih-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .sih-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Back to Portfolio */
+        .back-portfolio {
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        /* Certificate Display */
+        .certificate-display {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .certificate-img {
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+        
+        .certificate-actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* SIH Details */
+        .sih-details {
+            background-color: var(--light);
+            padding: 60px 0;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .detail-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .detail-card h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .detail-card h3 i {
+            margin-right: 10px;
+        }
+        
+        .detail-list {
+            list-style: none;
+        }
+        
+        .detail-list li {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 150px;
+        }
+        
+        .detail-value {
+            color: var(--dark);
+            text-align: right;
+            flex: 1;
+        }
+        
+        /* About SIH */
+        .about-sih {
+            padding: 80px 0;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-content h2 {
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid var(--indigo);
+        }
+        
+        /* Video Section */
+        .video-section {
+            background-color: var(--light);
+            padding: 60px 0;
+        }
+        
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-embed {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-content {
+            padding: 20px;
+        }
+        
+        .video-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Organizers Section */
+        .organizers-section {
+            padding: 60px 0;
+        }
+        
+        .organizers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .organizer-logo {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .organizer-logo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .organizer-icon {
+            font-size: 2.5rem;
+            color: var(--indigo);
+            margin-bottom: 15px;
+        }
+        
+        /* Share Modal */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .share-modal.active {
+            display: flex;
+        }
+        
+        .share-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .share-options {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .linkedin-share {
+            background: #0077b5;
+        }
+        
+        .twitter-share {
+            background: #1da1f2;
+        }
+        
+        .whatsapp-share {
+            background: #25d366;
+        }
+        
+        .email-share {
+            background: #ea4335;
+        }
+        
+        .copy-link-container {
+            margin: 15px 0;
+        }
+        
+        .copy-link-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-about h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .sih-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .certificate-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .detail-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .detail-label, .detail-value {
+                min-width: auto;
+                text-align: left;
+            }
+            
+            .detail-value {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Moses<span>Charlie</span></div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#achievements">Achievements</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SIH Hero Section -->
+    <section class="sih-hero">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fas fa-trophy"></i> National Level Finalist
+            </div>
+            <h1>Smart India Hackathon 2023</h1>
+            <p>Hardware Edition Grand Finale - Among Top 5 Teams Nationally</p>
+            <div class="certificate-actions">
+                <a href="#certificate" class="btn">View Certificate</a>
+                <a href="index.html#achievements" class="btn btn-outline">Back to Achievements</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Portfolio -->
+    <div class="back-portfolio">
+        <div class="container">
+            <a href="index.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+        </div>
+    </div>
+
+    <!-- Certificate Display -->
+    <section id="certificate" class="certificate-display">
+        <div class="container">
+            <h2 class="section-title">Certificate of Participation</h2>
+            <div class="certificate-container">
+                <img src="Smart India Hackathon 2023.png" alt="Smart India Hackathon 2023 Certificate" class="certificate-img">
+            </div>
+            <div class="certificate-actions">
+                <a href="Smart India Hackathon 2023.png" download="Moses_Charlie_SIH2023_Certificate.jpg" class="btn btn-indigo">
+                    <i class="fas fa-download"></i> Download Certificate
+                </a>
+                <button class="btn btn-outline share-achievement-btn">
+                    <i class="fas fa-share-alt"></i> Share Achievement
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIH Details -->
+    <section class="sih-details">
+        <div class="container">
+            <h2 class="section-title">Hackathon Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3><i class="fas fa-user-graduate"></i> Participant Information</h3>
+                    <ul class="detail-list">
+                        <li>
+                            <span class="detail-label">Name:</span>
+                            <span class="detail-value">Moses Charlie</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Team Name:</span>
+                            <span class="detail-value">Innovative Idea</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Role:</span>
+                            <span class="detail-value">Team Member</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Official Result:</span>
+                            <span class="detail-value">
+                                <a href="https://sih.gov.in/sih2023-screening-final-result" target="_blank" style="color: var(--secondary); text-decoration: none;">
+                                    View Shortlisted Teams
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3><i class="fas fa-info-circle"></i> Competition Details</h3>
+                    <ul class="detail-list">
+                        <li>
+                            <span class="detail-label">Edition:</span>
+                            <span class="detail-value">Smart India Hackathon 2023</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Category:</span>
+                            <span class="detail-value">Hardware Edition</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Problem Statement ID:</span>
+                            <span class="detail-value">SIH1476</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Certificate Type:</span>
+                            <span class="detail-value">Certificate of Participation</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Event Information</h3>
+                    <ul class="detail-list">
+                        <li>
+                            <span class="detail-label">Grand Finale Dates:</span>
+                            <span class="detail-value">December 19-23, 2023</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Achievement:</span>
+                            <span class="detail-value">Top 5 Teams Nationally</span>
+                        </li>
+                        <li>
+                            <span class="detail-label">Level:</span>
+                            <span class="detail-value">National Level</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About SIH -->
+    <section class="about-sih">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About Smart India Hackathon 2023</h2>
+                <p>Smart India Hackathon is a nationwide initiative by the Ministry of Education and AICTE to provide students with a platform to solve some of the pressing problems we face in our daily lives, and thus inculcate a culture of product innovation and a mindset of problem-solving.</p>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-microchip"></i> Hardware Edition Focus</h3>
+                    <p>The Hardware Edition of SIH 2023 focused on developing innovative hardware solutions to real-world problems. Participants worked on creating physical prototypes, embedded systems, and IoT devices to address challenges across various domains including agriculture, healthcare, smart cities, and environmental sustainability.</p>
+                </div>
+                
+                <p>Our team "Innovative Idea" was selected among the top 5 teams nationally in the Hardware Edition Grand Finale, competing against thousands of teams from across India. We worked on Problem Statement SIH1476, developing a hardware-based solution that demonstrated technical excellence and practical applicability.</p>
+                
+                <p>The 5-day Grand Finale was an intense experience that involved:</p>
+                <ul>
+                    <li>Prototype development and refinement</li>
+                    <li>Technical implementation and testing</li>
+                    <li>Presentation to expert judges</li>
+                    <li>Collaboration with industry mentors</li>
+                    <li>Networking with fellow innovators</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">Project Videos & Demos</h2>
+            <div class="video-container">
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/tEpbFOoLfpw" title="Hardware Prototype Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Hardware Prototype Demo</h3>
+                        <p>Detailed demonstration of our hardware solution developed for SIH 2023, showcasing functionality and innovation.</p>
+                        <a href="https://www.youtube.com/watch?v=tEpbFOoLfpw&feature=youtu.be" target="_blank" class="btn btn-indigo" style="margin-top: 10px;">
+                            <i class="fab fa-youtube"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/dIXtkClJP4k" title="Final Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Final Presentation</h3>
+                        <p>Our team's final presentation to the judges, explaining the problem statement, solution approach, and implementation.</p>
+                        <a href="https://www.youtube.com/watch?v=dIXtkClJP4k" target="_blank" class="btn btn-indigo" style="margin-top: 10px;">
+                            <i class="fab fa-youtube"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/zY8kVgIuxF8" title="Hackathon Experience" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Hackathon Experience</h3>
+                        <p>A glimpse into our 5-day journey at the SIH 2023 Grand Finale - the challenges, learning, and team collaboration.</p>
+                        <a href="https://www.youtube.com/watch?v=zY8kVgIuxF8&list=PLT5eBpPNjwz9epm8eauDI5k6u38frGeOt" target="_blank" class="btn btn-indigo" style="margin-top: 10px;">
+                            <i class="fab fa-youtube"></i> Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizers Section -->
+    <section class="organizers-section">
+        <div class="container">
+            <h2 class="section-title">Organized By</h2>
+            <div class="organizers-grid">
+                <div class="organizer-logo">
+                    <div class="organizer-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Ministry of Education</h4>
+                    <p>Government of India</p>
+                </div>
+                <div class="organizer-logo">
+                    <div class="organizer-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h4>AICTE</h4>
+                    <p>All India Council for Technical Education</p>
+                </div>
+                <div class="organizer-logo">
+                    <div class="organizer-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h4>SIH 2023</h4>
+                    <p>Smart India Hackathon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Explore More Achievements</h2>
+            <p>Check out my other hackathon participations, certifications, and accomplishments.</p>
+            <div class="certificate-actions">
+                <a href="index.html#achievements" class="btn">View All Achievements</a>
+                <a href="index.html#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Moses Charlie Yalla</h3>
+                    <p>Creative professional with expertise in problem-solving, product design, project management, and IoT (AI/ML).</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Moses Charlie Yalla. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <h3>Share Achievement</h3>
+            <p>Share my Smart India Hackathon 2023 achievement on:</p>
+            <div class="share-options">
+                <a href="#" class="share-btn linkedin-share" id="linkedinShare">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="#" class="share-btn twitter-share" id="twitterShare">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="#" class="share-btn whatsapp-share" id="whatsappShare">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="#" class="share-btn email-share" id="emailShare">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+            <div class="copy-link-container">
+                <p><strong>Or copy link:</strong></p>
+                <input type="text" id="shareUrl" class="copy-link-input" value="https://yourportfolio.com/sih2023.html" readonly>
+                <button class="btn" id="copyLinkBtn" style="margin-top: 10px;">
+                    <i class="fas fa-copy"></i> Copy Link
+                </button>
+            </div>
+            <button class="btn btn-outline" id="closeShareModal" style="margin-top: 15px;">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Share Achievement Functionality
+        const shareAchievementBtn = document.querySelector('.share-achievement-btn');
+        const shareModal = document.getElementById('shareModal');
+        const closeShareModal = document.getElementById('closeShareModal');
+        const copyLinkBtn = document.getElementById('copyLinkBtn');
+        const shareUrlInput = document.getElementById('shareUrl');
+
+        // Social share URLs
+        const pageUrl = encodeURIComponent(window.location.href);
+        const shareText = encodeURIComponent("I was a National Level Finalist in Smart India Hackathon 2023 Hardware Edition! Check out my achievement.");
+
+        // Set up social sharing links
+        document.getElementById('linkedinShare').href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
+        document.getElementById('twitterShare').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${pageUrl}`;
+        document.getElementById('whatsappShare').href = `https://wa.me/?text=${shareText}%20${pageUrl}`;
+        document.getElementById('emailShare').href = `mailto:?subject=My Smart India Hackathon 2023 Achievement&body=${shareText}%0A%0AView it here: ${pageUrl}`;
+
+        // Open share modal
+        shareAchievementBtn.addEventListener('click', function() {
+            shareModal.classList.add('active');
+        });
+
+        // Close share modal
+        closeShareModal.addEventListener('click', function() {
+            shareModal.classList.remove('active');
+        });
+
+        // Copy link functionality
+        copyLinkBtn.addEventListener('click', function() {
+            shareUrlInput.select();
+            document.execCommand('copy');
+            
+            // Change button text temporarily
+            const originalText = copyLinkBtn.innerHTML;
+            copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            
+            setTimeout(() => {
+                copyLinkBtn.innerHTML = originalText;
+            }, 2000);
+        });
+
+        // Close modal when clicking outside
+        shareModal.addEventListener('click', function(e) {
+            if (e.target === shareModal) {
+                shareModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
